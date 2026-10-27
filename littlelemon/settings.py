@@ -70,12 +70,28 @@ DATABASES = {
     }
 }
 
-# Fallback for test runner execution when MySQL daemon is not running locally
+# Fallback for test runner execution or when MySQL is not running locally
 if os.environ.get('DJANGO_DB_ENGINE') == 'sqlite' or 'test' in sys.argv:
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+else:
+    try:
+        import MySQLdb
+        _conn = MySQLdb.connect(
+            host=DATABASES['default']['HOST'],
+            user=DATABASES['default']['USER'],
+            passwd=DATABASES['default']['PASSWORD'],
+            port=int(DATABASES['default']['PORT']),
+            connect_timeout=1
+        )
+        _conn.close()
+    except Exception:
+        DATABASES['default'] = {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
