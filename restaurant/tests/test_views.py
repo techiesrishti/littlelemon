@@ -120,3 +120,42 @@ class UserRegistrationTest(TestCase):
         response = self.client.post('/api/registration/', payload, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertTrue(User.objects.filter(username='newuser').exists())
+
+
+class DjoserAuthenticationTest(TestCase):
+    """
+    Test suite for Djoser endpoints (/auth/users/, /auth/token/login/, /auth/token/logout/).
+    """
+    def setUp(self):
+        self.client = APIClient()
+
+    def test_djoser_user_registration(self):
+        payload = {
+            'username': 'djoser_user',
+            'password': 'ComplexPassword123!',
+            'email': 'djoser@littlelemon.com'
+        }
+        response = self.client.post('/auth/users/', payload, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertTrue(User.objects.filter(username='djoser_user').exists())
+
+    def test_djoser_token_login_and_logout(self):
+        # Create user
+        User.objects.create_user(
+            username='auth_user',
+            password='ComplexPassword123!'
+        )
+        # Login
+        login_payload = {
+            'username': 'auth_user',
+            'password': 'ComplexPassword123!'
+        }
+        login_resp = self.client.post('/auth/token/login/', login_payload, format='json')
+        self.assertEqual(login_resp.status_code, status.HTTP_200_OK)
+        self.assertIn('auth_token', login_resp.data)
+        token = login_resp.data['auth_token']
+
+        # Logout
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token)
+        logout_resp = self.client.post('/auth/token/logout/')
+        self.assertEqual(logout_resp.status_code, status.HTTP_204_NO_CONTENT)
