@@ -1,0 +1,26 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Karla", Arial, sans-serif; color: #222; background: #fff; }
+header { display: flex; justify-content: center; padding: 16px 0; }
+.logo { display: flex; align-items: center; gap: 24px; text-decoration: none; color: #495E57; }
+.logo span { font-family: Georgia, serif; font-size: 2rem; letter-spacing: .3em; font-weight: bold; }
+nav { background: #495E57; display: flex; justify-content: center; gap: 16px; padding: 12px; }
+nav a { color: #fff; text-decoration: none; font-weight: 600; }
+nav a:hover { text-decoration: underline; }
+main { max-width: 900px; margin: 0 auto; padding: 24px 16px; min-height: 55vh; }
+h1 { font-family: Georgia, serif; font-size: 2.4rem; }
+h2 { font-family: Georgia, serif; }
+.booking-layout { display: flex; flex-wrap: wrap; gap: 48px; }
+#booking-form { width: 280px; }
+label { display: block; margin-bottom: 4px; font-weight: 600; }
+input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+option:disabled { color: #aaa; }
+.btn { display: inline-block; background: #495E57; color: #fff; border: 0; border-radius: 6px;
+       padding: 12px 20px; font-size: 1rem; cursor: pointer; text-decoration: none; width: 100%; text-align: center; }
+.btn:disabled { background: #aaa; cursor: not-allowed; }
+.error { color: #b00020; } .success { color: #2e7d32; }
+.no-booking { font-style: italic; color: #666; }
+.menu-item { border-bottom: 1px solid #eee; padding: 8px 0; }
+.price { float: right; color: #495E57; }
+pre { background: #f4f4f4; padding: 16px; border-radius: 6px; overflow: auto; }
+footer { background: #EDEFEE; text-align: right; padding: 24px; margin-top: 24px; }
+footer p { margin: 0; }

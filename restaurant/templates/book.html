@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Book{% endblock %}
+{% block content %}
+<section>
+  <h1>Make a reservation</h1>
+  <div class="booking-layout">
+    <form id="booking-form">
+      <p>
+        <label for="first_name">Name:</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Your Name" maxlength="200" required>
+      </p>
+      <p>
+        <label for="reservation_date">Reservation date:</label>
+        <input type="date" id="reservation_date" name="reservation_date" required>
+      </p>
+      <p>
+        <label for="reservation_slot">Reservation time:</label>
+        <select id="reservation_slot" name="reservation_slot" required></select>
+      </p>
+      <button type="submit" id="reserve-btn" class="btn">Reserve</button>
+      <p id="message" role="status"></p>
+    </form>
+
+    <div>
+      <h2 id="bookings-heading">Bookings</h2>
+      <div id="bookings"></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{% static 'js/book.js' %}"></script>{% endblock %}

@@ -1,0 +1,5 @@
+[
+  {"model": "restaurant.menu", "pk": 1, "fields": {"name": "Greek Salad", "price": "12.50", "menu_item_description": "Crispy lettuce, peppers, olives and our Chicago style feta cheese."}},
+  {"model": "restaurant.menu", "pk": 2, "fields": {"name": "Bruschetta", "price": "7.99", "menu_item_description": "Grilled bread smeared with garlic and seasoned with salt and olive oil."}},
+  {"model": "restaurant.menu", "pk": 3, "fields": {"name": "Lemon Dessert", "price": "6.50", "menu_item_description": "Traditional homemade Italian lemon cake."}}
+]

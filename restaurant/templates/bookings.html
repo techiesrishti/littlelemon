@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Reservations{% endblock %}
+{% block content %}
+<section>
+  <h1>Reservations</h1>
+  <p>All bookings, as JSON data returned by <code>/bookings</code>:</p>
+  <pre id="reservations-json">Loading...</pre>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+  fetch("{% url 'bookings' %}")
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById('reservations-json').textContent =
+        JSON.stringify(data, null, 2);
+    })
+    .catch(() => {
+      document.getElementById('reservations-json').textContent = 'Could not load bookings.';
+    });
+</script>
+{% endblock %}

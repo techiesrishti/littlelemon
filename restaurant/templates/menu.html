@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Menu{% endblock %}
+{% block content %}
+<section>
+  <h1>Our Menu</h1>
+  {% for item in menu %}
+    <div class="menu-item">
+      <h3>{{ item.name }} <span class="price">${{ item.price }}</span></h3>
+      <p>{{ item.menu_item_description }}</p>
+    </div>
+  {% empty %}
+    <p>No menu items yet. Add some in the admin site or run
+       <code>python manage.py loaddata menu</code>.</p>
+  {% endfor %}
+</section>
+{% endblock %}
